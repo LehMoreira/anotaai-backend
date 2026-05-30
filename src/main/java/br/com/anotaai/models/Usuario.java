@@ -1,6 +1,6 @@
-package br.com.anotaai.model;
+package br.com.anotaai.models;
 
-import br.com.anotaai.enuns.Roles;
+import br.com.anotaai.enums.Roles;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

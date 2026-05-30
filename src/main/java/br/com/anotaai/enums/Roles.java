@@ -1,4 +1,4 @@
-package br.com.anotaai.enuns;
+package br.com.anotaai.enums;
 
 public enum Roles {
 	ADMIN,
