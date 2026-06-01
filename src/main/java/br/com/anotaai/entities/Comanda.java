@@ -1,4 +1,4 @@
-package br.com.anotaai.models;
+package br.com.anotaai.entities;
 
 import br.com.anotaai.enums.StatusComanda;
 import jakarta.persistence.*;
@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "comandas")

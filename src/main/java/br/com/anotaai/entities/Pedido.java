@@ -1,4 +1,4 @@
-package br.com.anotaai.models;
+package br.com.anotaai.entities;
 
 
 import br.com.anotaai.enums.StatusPedido;
@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

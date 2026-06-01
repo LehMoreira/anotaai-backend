@@ -1,4 +1,4 @@
-package br.com.anotaai.models;
+package br.com.anotaai.entities;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package br.com.anotaai.models;
+package br.com.anotaai.entities;
 
 import br.com.anotaai.enums.FormaPagamento;
 import br.com.anotaai.enums.StatusPagamento;
