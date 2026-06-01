@@ -1,6 +1,5 @@
 package br.com.anotaai.models;
 
-import br.com.anotaai.enums.Roles;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,26 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "categorias")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
+public class Categoria {
 
-public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
-
-    private String email;
-
-    private String senha;
-
-
-    @Enumerated(EnumType.STRING)
-    private Roles role;
-
-
 }

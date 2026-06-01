@@ -1,33 +1,33 @@
 package br.com.anotaai.models;
 
-import br.com.anotaai.enums.Roles;
+
+import br.com.anotaai.enums.TipoNotificacao;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "users")
+@Table(name = "notificacoes")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
+public class Notificacao {
 
-public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String mensagem;
 
-    private String email;
+    private LocalDateTime dataHora;
 
-    private String senha;
-
+    private boolean lida;
 
     @Enumerated(EnumType.STRING)
-    private Roles role;
-
-
+    private TipoNotificacao tipo;
 }

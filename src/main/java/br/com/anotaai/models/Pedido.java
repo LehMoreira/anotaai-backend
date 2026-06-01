@@ -1,33 +1,34 @@
 package br.com.anotaai.models;
 
-import br.com.anotaai.enums.Roles;
+
+import br.com.anotaai.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "users")
+@Table(name = "pedidos")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
+public class Pedido {
 
-public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private LocalDateTime dataHora;
 
-    private String email;
+    private String observacao;
 
-    private String senha;
-
+    private Usuario origemPedido;
 
     @Enumerated(EnumType.STRING)
-    private Roles role;
-
-
+    private StatusPedido statusPedido;
 }
