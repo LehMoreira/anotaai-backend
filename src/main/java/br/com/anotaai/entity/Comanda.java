@@ -1,4 +1,4 @@
-package br.com.anotaai.entities;
+package br.com.anotaai.entity;
 
 import br.com.anotaai.enums.StatusComanda;
 import jakarta.persistence.*;

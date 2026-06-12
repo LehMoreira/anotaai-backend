@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.entities.RefreshToken;
+import br.com.anotaai.entity.RefreshToken;
 import br.com.anotaai.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 

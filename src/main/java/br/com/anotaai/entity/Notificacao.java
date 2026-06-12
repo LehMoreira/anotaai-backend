@@ -1,39 +1,33 @@
-package br.com.anotaai.entities;
+package br.com.anotaai.entity;
 
-import br.com.anotaai.enums.FormaPagamento;
-import br.com.anotaai.enums.StatusPagamento;
+
+import br.com.anotaai.enums.TipoNotificacao;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "pagamentos")
+@Table(name = "notificacoes")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
-public class Pagamento {
+public class Notificacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal valor;
-
+    private String mensagem;
 
     private LocalDateTime dataHora;
 
-    @Enumerated(EnumType.STRING)
-    private FormaPagamento formaPagamento;
-
+    private boolean lida;
 
     @Enumerated(EnumType.STRING)
-    private StatusPagamento statusPagamento;
-
-
+    private TipoNotificacao tipo;
 }

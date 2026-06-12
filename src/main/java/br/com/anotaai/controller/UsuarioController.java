@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.anotaai.entities.Usuario;
+import br.com.anotaai.entity.Usuario;
 import br.com.anotaai.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 

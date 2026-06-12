@@ -1,15 +1,13 @@
-package br.com.anotaai.entities;
+package br.com.anotaai.entity;
 
 import java.time.LocalDateTime;
 
-import br.com.anotaai.enums.Roles;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

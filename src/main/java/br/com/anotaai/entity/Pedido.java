@@ -1,7 +1,7 @@
-package br.com.anotaai.entities;
+package br.com.anotaai.entity;
 
 
-import br.com.anotaai.enums.TipoNotificacao;
+import br.com.anotaai.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,23 +11,23 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notificacoes")
+@Table(name = "pedidos")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
-public class Notificacao {
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mensagem;
-
     private LocalDateTime dataHora;
 
-    private boolean lida;
+    private String observacao;
+
+    private Usuario origemPedido;
 
     @Enumerated(EnumType.STRING)
-    private TipoNotificacao tipo;
+    private StatusPedido statusPedido;
 }

@@ -1,34 +1,33 @@
-package br.com.anotaai.entities;
+package br.com.anotaai.entity;
 
 
-import br.com.anotaai.enums.StatusItemPedido;
+import br.com.anotaai.enums.StatusMesa;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "itemsPedido")
+@Table(name = "mesas")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 
-public class ItemPedido {
+public class Mesa {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int quantidade;
+    private Long numeroMesa;
 
-    private BigDecimal precoUnitario;
+    private int capacidade;
 
     @Enumerated(EnumType.STRING)
-    private StatusItemPedido  statusEntrega;
+    private StatusMesa statusMesa;
 
 
 }

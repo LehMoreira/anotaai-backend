@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.entities.Usuario;
+import br.com.anotaai.entity.Usuario;
 import br.com.anotaai.repository.UsuarioRepository;
 
 @Service
