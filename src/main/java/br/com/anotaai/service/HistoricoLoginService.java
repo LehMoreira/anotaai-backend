@@ -2,7 +2,7 @@ package br.com.anotaai.service;
 
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.models.HistoricoLogin;
+import br.com.anotaai.entities.HistoricoLogin;
 import br.com.anotaai.repository.HistoricoLoginRepository;
 import br.com.anotaai.security.CustomUserDetails;
 import lombok.*;

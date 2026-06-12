@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 
-import br.com.anotaai.models.Usuario;
+import br.com.anotaai.entities.Usuario;
 
 public class CustomUserDetails implements UserDetails {
 	private final Usuario user;

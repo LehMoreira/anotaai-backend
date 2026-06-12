@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.models.Usuario;
+import br.com.anotaai.entities.Usuario;
 import br.com.anotaai.security.*;
 import lombok.RequiredArgsConstructor;
 
