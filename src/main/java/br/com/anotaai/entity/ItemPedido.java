@@ -30,5 +30,15 @@ public class ItemPedido {
     @Enumerated(EnumType.STRING)
     private StatusItemPedido  statusEntrega;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
+
+
 
 }

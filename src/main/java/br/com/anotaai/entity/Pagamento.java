@@ -36,4 +36,9 @@ public class Pagamento {
     private StatusPagamento statusPagamento;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comanda_id")
+    private Comanda comanda;
+
+
 }

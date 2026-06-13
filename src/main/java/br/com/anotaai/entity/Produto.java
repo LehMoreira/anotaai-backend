@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "produtos")
@@ -31,6 +33,15 @@ public class Produto {
     private boolean disponivel;
 
     private URI imagemURL;
+
+    @OneToMany(mappedBy = "produto" , fetch = FetchType.LAZY)
+    private List<ItemPedido> itemPedidoList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+
 
 
 }

@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "comandas")
@@ -25,11 +27,23 @@ public class Comanda {
 
     private LocalDate dataAbertura;
 
-    private LocalDate  dataFechamento;
+    private LocalDate dataFechamento;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal valorTotal;
 
     @Enumerated(EnumType.STRING)
     private StatusComanda status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mesa_id")
+    private Mesa mesa;
+
+    @OneToMany(mappedBy = "comanda" , fetch = FetchType.LAZY)
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "comanda" , fetch = FetchType.LAZY)
+    private List<Pagamento> pagamentos = new ArrayList<>();
+
+
 }
