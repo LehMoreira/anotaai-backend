@@ -55,7 +55,7 @@ public class AuthService {
 
         loginHistoryService.save(user, accessToken);
 
-        return new JwtResponse(accessToken, refreshToken.getToken());
+        return new JwtResponse(accessToken, refreshToken.getToken(),user.getUser().getRole().name());
     }
 
     public void register(RegisterRequest request) {
@@ -76,14 +76,15 @@ public class AuthService {
                 refreshTokenService.validate(request.refreshToken());
 
         Usuario user = userRepository.findById(refreshToken.getUserId()).orElse(null);
-
+        
         CustomUserDetails userDetails = new CustomUserDetails(user);
 
         String newAccessToken = jwtService.generateToken(userDetails);
 
         return new JwtResponse(
                 newAccessToken,
-                refreshToken.getToken()
+                refreshToken.getToken(),
+                user.getRole().name()
         );
     }
 

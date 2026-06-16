@@ -1,5 +1,5 @@
 package br.com.anotaai.dto;
 
-public record JwtResponse(String accessToken, String refreshTokenToken) {
+public record JwtResponse(String accessToken, String refreshTokenToken, String role) {
 
 }
