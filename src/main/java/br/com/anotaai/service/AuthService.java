@@ -44,7 +44,7 @@ public class AuthService {
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(
-                                request.login(), request.password()));
+                                request.email(), request.password()));
 
         CustomUserDetails user =
                 (CustomUserDetails) authentication.getPrincipal();
@@ -65,7 +65,7 @@ public class AuthService {
         }
 
         Usuario user = new Usuario();
-        user.setLogin(request.login());
+        user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.senha()));
         userRepository.save(user);
     }

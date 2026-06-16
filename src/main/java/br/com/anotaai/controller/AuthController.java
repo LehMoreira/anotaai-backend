@@ -2,6 +2,7 @@ package br.com.anotaai.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Auth")
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class AuthController {
 
     private final AuthService authService;
@@ -27,8 +30,6 @@ public class AuthController {
 
 	@PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
-	    System.out.println("ENTROU NO LOGIN");
-
         return authService.login(request);
     }
 
