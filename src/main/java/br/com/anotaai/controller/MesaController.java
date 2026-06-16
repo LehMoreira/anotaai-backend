@@ -1,0 +1,38 @@
+package br.com.anotaai.controller;
+
+import br.com.anotaai.dto.StatusMesaMesaRequest;
+import br.com.anotaai.entity.Mesa;
+
+import br.com.anotaai.service.MesaService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/mesas")
+@RequiredArgsConstructor
+public class MesaController {
+
+    private final MesaService mesaService;
+
+    @GetMapping
+    public List<Mesa> listarMesas() {
+        return mesaService.listarMesas();
+    }
+
+    @GetMapping("/{id}")
+    public Mesa listarMesaPorId(@PathVariable Long id){
+        return mesaService.buscarMesaPorId(id);
+    }
+
+    @PatchMapping("/{id}/status")
+    public void atualizarStatusMesa(@PathVariable Long id, @RequestBody StatusMesaMesaRequest statusMesa){
+        mesaService.atualizarStatusMesa(id, statusMesa);
+    }
+
+    @DeleteMapping("/{id}")
+    public void DeletarMesa(@PathVariable Long id){
+        mesaService.deletarMesa(id);
+    }
+}

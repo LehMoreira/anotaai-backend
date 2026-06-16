@@ -49,7 +49,8 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
-                                "/auth/**"
+                                "/auth/**",
+                                "/mesas/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -70,7 +71,7 @@ public class SecurityConfig {
 		config.setAllowCredentials(true);
 		
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("**", config);
+		source.registerCorsConfiguration("/**", config);
 		return source;
 	}
 }
