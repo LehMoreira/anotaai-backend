@@ -27,6 +27,8 @@ public class AuthController {
 
 	@PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
+	    System.out.println("ENTROU NO LOGIN");
+
         return authService.login(request);
     }
 

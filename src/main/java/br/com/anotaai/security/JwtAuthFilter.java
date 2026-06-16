@@ -50,7 +50,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         try {
 
-            String email = Jwts.parserBuilder()
+            String login = Jwts.parserBuilder()
                     .setSigningKey(jwtService.getKey())
                     .build()
                     .parseClaimsJws(token)
@@ -58,7 +58,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     .getSubject();
 
             UserDetails userDetails =
-                    userDetailsService.loadUserByUsername(email);
+                    userDetailsService.loadUserByUsername(login);
 
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(

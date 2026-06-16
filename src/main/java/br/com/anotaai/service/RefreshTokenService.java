@@ -24,7 +24,7 @@ public class RefreshTokenService {
 
     public RefreshToken create(Long userId) {
         RefreshToken token = new RefreshToken();
-        token.setId(userId);
+        token.setUserId(userId);
         token.setToken(UUID.randomUUID().toString());
         token.setDateExpiry(
                 LocalDateTime.now().plusMinutes(refreshExpiration));
