@@ -22,7 +22,7 @@ public class RefreshToken {
     private String token;
     private String password;
     private LocalDateTime dateExpiry;
-    private boolean revoke;
+    private boolean revoked;
     
 	public Long getId() {
 		return id;
@@ -56,10 +56,10 @@ public class RefreshToken {
 		this.dateExpiry = dateExpiry;
 	}
 	public boolean isRevoke() {
-		return revoke;
+		return revoked;
 	}
 	public void setRevoke(boolean revoke) {
-		this.revoke = revoke;
+		this.revoked = revoke;
 	}
     
     
