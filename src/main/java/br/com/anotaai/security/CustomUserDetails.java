@@ -29,7 +29,9 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
     }
-
+    public Usuario getUser() {
+        return user;
+    }
     public String getPassword() {
         return user.getPassword();
     }
