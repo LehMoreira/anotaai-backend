@@ -14,21 +14,32 @@ import br.com.anotaai.entity.RefreshToken;
 import br.com.anotaai.entity.Usuario;
 import br.com.anotaai.repository.UsuarioRepository;
 import br.com.anotaai.security.CustomUserDetails;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
 public class AuthService {
 
-    private final AuthenticationManager authenticationManager = null;
-    private final JwtService jwtService = new JwtService();
-    private final RefreshTokenService refreshTokenService = new RefreshTokenService();
-    private final HistoricoLoginService loginHistoryService = new HistoricoLoginService();
-    private final UsuarioRepository userRepository = null;
-    private final PasswordEncoder passwordEncoder = null;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+    private final RefreshTokenService refreshTokenService;
+    private final HistoricoLoginService loginHistoryService;
+    private final UsuarioRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    	
+
+   public AuthService(AuthenticationManager authenticationManager,JwtService jwtService, RefreshTokenService refreshTokenService,
+			HistoricoLoginService loginHistoryService, UsuarioRepository userRepository,
+			PasswordEncoder passwordEncoder) {
+		this.authenticationManager = authenticationManager;
+		this.jwtService = jwtService;
+		this.refreshTokenService = refreshTokenService;
+		this.loginHistoryService = loginHistoryService;
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 
-    public JwtResponse login(LoginRequest request) {
+	public JwtResponse login(LoginRequest request) {
 
         Authentication authentication =
                 authenticationManager.authenticate(

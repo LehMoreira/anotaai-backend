@@ -3,20 +3,13 @@ package br.com.anotaai.entity;
 
 import br.com.anotaai.enums.StatusMesa;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "mesas")
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 
 public class Mesa {
 
@@ -38,6 +31,73 @@ public class Mesa {
     @OneToMany(mappedBy = "mesa" , fetch = FetchType.LAZY )
     private List<Comanda> comandas = new ArrayList<>();
 
+	public Mesa() {}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getNumeroMesa() {
+		return numeroMesa;
+	}
+
+	public void setNumeroMesa(Long numeroMesa) {
+		this.numeroMesa = numeroMesa;
+	}
+
+	public int getCapacidade() {
+		return capacidade;
+	}
+
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
+
+	public StatusMesa getStatusMesa() {
+		return statusMesa;
+	}
+
+	public void setStatusMesa(StatusMesa statusMesa) {
+		this.statusMesa = statusMesa;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public List<Comanda> getComandas() {
+		return comandas;
+	}
+
+	public void setComandas(List<Comanda> comandas) {
+		this.comandas = comandas;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mesa other = (Mesa) obj;
+		return Objects.equals(id, other.id);
+	}
+
+    
 
 }
