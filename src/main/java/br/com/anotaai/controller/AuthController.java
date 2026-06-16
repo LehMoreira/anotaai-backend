@@ -13,18 +13,19 @@ import br.com.anotaai.dto.RefreshTokenRequest;
 import br.com.anotaai.dto.RegisterRequest;
 import br.com.anotaai.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 
 @Tag(name = "Auth")
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService = new AuthService();
+    private final AuthService authService;
+    
+    public AuthController(AuthService authService) {
+		this.authService = authService;
+	}
 
-
-    @PostMapping("/login")
+	@PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);
     }

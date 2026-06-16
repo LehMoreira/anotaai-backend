@@ -7,16 +7,22 @@ import org.springframework.stereotype.Service;
 
 import br.com.anotaai.entity.Usuario;
 import br.com.anotaai.security.*;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UsuarioService usuarioService = null;
+    private final UsuarioService usuarioService;
+    
 
 
-    @Override
+    public CustomUserDetailsService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+
+
+	@Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario usuario = usuarioService.findByEmail(email);
         if (usuario == null) {

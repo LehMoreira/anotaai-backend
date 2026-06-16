@@ -7,11 +7,9 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 @Entity
 @Table (name="historico_login")
 public class HistoricoLogin {
@@ -24,6 +22,16 @@ public class HistoricoLogin {
 	private String acessToken;
 	@CreationTimestamp
 	private LocalDateTime dataLogin;
+	
+	public HistoricoLogin(Long id, Long user_id, String email, String acessToken, LocalDateTime dataLogin) {
+		this.id = id;
+		this.user_id = user_id;
+		this.email = email;
+		this.acessToken = acessToken;
+		this.dataLogin = dataLogin;
+	}
+	public HistoricoLogin() {}
+	
 	public Long getId() {
 		return id;
 	}

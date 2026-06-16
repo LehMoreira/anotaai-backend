@@ -8,16 +8,18 @@ import org.springframework.stereotype.Service;
 
 import br.com.anotaai.entity.RefreshToken;
 import br.com.anotaai.repository.RefreshTokenRepository;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
 public class RefreshTokenService {
 
-    private final RefreshTokenRepository repository = null;
+    private final RefreshTokenRepository repository;
 
-    @Value("${security.jwt.refresh-expiration-minutes}")
+	@Value("${security.jwt.refresh-expiration-minutes}")
     private long refreshExpiration;
+	
+	public RefreshTokenService(RefreshTokenRepository repository) {
+		this.repository = repository;
+	}
 
 
     public RefreshToken create(Long userId) {

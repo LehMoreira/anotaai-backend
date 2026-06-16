@@ -10,17 +10,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import br.com.anotaai.security.JwtAuthFilter;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final JwtAuthFilter jwtFilter = new JwtAuthFilter();
+    private final JwtAuthFilter jwtFilter;
+    
 
 
-    @Bean
+    public SecurityConfig(JwtAuthFilter jwtFilter) {
+		this.jwtFilter = jwtFilter;
+	}
+
+
+
+	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
