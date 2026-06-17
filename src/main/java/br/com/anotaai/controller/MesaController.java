@@ -19,7 +19,11 @@ public class MesaController {
     public MesaController(MesaService mesaService) {
 		this.mesaService = mesaService;
 	}
-
+	@PostMapping
+    public ResponseEntity<MesaResponse> salvarMesa(@Valid @RequestBody CriarMesaRequest criarMesaRequest){
+        MesaResponse mesaResponse = mesaService.salvarMesa(criarMesaRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(mesaResponse);
+    }
 	@GetMapping
     public List<Mesa> listarMesas() {
         return mesaService.listarMesas();
