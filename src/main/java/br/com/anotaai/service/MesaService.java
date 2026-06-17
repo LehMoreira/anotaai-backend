@@ -1,8 +1,9 @@
 package br.com.anotaai.service;
 
-import br.com.anotaai.dto.StatusMesaMesaRequest;
+import br.com.anotaai.dto.request.CriarMesaRequest;
+import br.com.anotaai.dto.request.StatusMesaRequest;
+import br.com.anotaai.dto.response.MesaResponse;
 import br.com.anotaai.entity.Mesa;
-import br.com.anotaai.enums.StatusMesa;
 import br.com.anotaai.repository.MesaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,30 @@ import java.util.List;
 public class MesaService {
 
     private final MesaRepository mesaRepository;
+
+
+        public MesaResponse salvarMesa(CriarMesaRequest criarMesaRequest) {
+
+        Mesa mesa = new Mesa();
+
+        mesa.setNumeroMesa(criarMesaRequest.getNumeroMesa());
+
+        mesa.setCapacidade(criarMesaRequest.getCapacidade());
+
+        mesa.setStatusMesa(criarMesaRequest.getStatusMesa());
+
+        Mesa mesaSalva = mesaRepository.save(mesa);
+
+        MesaResponse mesaResponse = new MesaResponse();
+
+        mesaResponse.setId(mesaSalva.getId());
+        mesaResponse.setNumeroMesa(mesaSalva.getNumeroMesa());
+        mesaResponse.setCapacidade(mesaSalva.getCapacidade());
+        mesaResponse.setStatusMesa(mesaSalva.getStatusMesa());
+
+        return mesaResponse;
+
+    }
 
 
     public List<Mesa> listarMesas() {
@@ -30,7 +55,7 @@ public class MesaService {
         mesaRepository.deleteById(id);
     }
 
-    public void atualizarStatusMesa(Long id, StatusMesaMesaRequest statusMesa) {
+    public void atualizarStatusMesa(Long id, StatusMesaRequest statusMesa) {
         Mesa mesa = buscarMesaPorId(id);
 
         if (statusMesa.getStatusMesa() != mesa.getStatusMesa()) {

@@ -3,6 +3,7 @@ package br.com.anotaai.entity;
 
 import br.com.anotaai.enums.StatusPedido;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "pedidos")
+@Getter
 public class Pedido {
 
     @Id
