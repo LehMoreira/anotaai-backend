@@ -2,21 +2,22 @@ package br.com.anotaai.service;
 
 import br.com.anotaai.dto.StatusMesaMesaRequest;
 import br.com.anotaai.entity.Mesa;
-import br.com.anotaai.enums.StatusMesa;
 import br.com.anotaai.repository.MesaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class MesaService {
 
     private final MesaRepository mesaRepository;
+    
 
+    public MesaService(MesaRepository mesaRepository) {
+		this.mesaRepository = mesaRepository;
+	}
 
-    public List<Mesa> listarMesas() {
+	public List<Mesa> listarMesas() {
         return mesaRepository.findAll();
     }
 

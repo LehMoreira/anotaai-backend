@@ -4,19 +4,23 @@ import br.com.anotaai.dto.StatusMesaMesaRequest;
 import br.com.anotaai.entity.Mesa;
 
 import br.com.anotaai.service.MesaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/mesas")
-@RequiredArgsConstructor
+
 public class MesaController {
 
     private final MesaService mesaService;
+    
 
-    @GetMapping
+    public MesaController(MesaService mesaService) {
+		this.mesaService = mesaService;
+	}
+
+	@GetMapping
     public List<Mesa> listarMesas() {
         return mesaService.listarMesas();
     }

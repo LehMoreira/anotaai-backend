@@ -10,9 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "mesas")
-
 public class Mesa {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
