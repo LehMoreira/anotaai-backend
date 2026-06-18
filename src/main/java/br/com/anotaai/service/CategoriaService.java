@@ -4,18 +4,21 @@ import br.com.anotaai.dto.request.CriarCategoriaRequest;
 import br.com.anotaai.dto.response.CategoriaResponse;
 import br.com.anotaai.entity.Categoria;
 import br.com.anotaai.repository.CategoriaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+    
 
-    public CategoriaResponse criarCategoria(CriarCategoriaRequest categoriaRequest) {
+    public CategoriaService(CategoriaRepository categoriaRepository) {
+		this.categoriaRepository = categoriaRepository;
+	}
+
+	public CategoriaResponse criarCategoria(CriarCategoriaRequest categoriaRequest) {
         Categoria categoria = new Categoria();
 
         categoria.setNome(categoriaRequest.getNome());

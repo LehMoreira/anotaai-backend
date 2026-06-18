@@ -5,7 +5,6 @@ import br.com.anotaai.dto.response.CategoriaResponse;
 import br.com.anotaai.entity.Categoria;
 import br.com.anotaai.service.CategoriaService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

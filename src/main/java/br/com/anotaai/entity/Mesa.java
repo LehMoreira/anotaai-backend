@@ -32,8 +32,8 @@ public class Mesa {
     private List<Comanda> comandas = new ArrayList<>();
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sessao_id")
-    private Sessao sessao;
+    @JoinColumn(name = "secao_id")
+    private Secao secao;
 
 	public Mesa() {}
 
@@ -85,12 +85,12 @@ public class Mesa {
 		this.comandas = comandas;
 	}
 	
-	public Sessao getSessao() {
-		return sessao;
+	public Secao getSecao() {
+		return secao;
 	}
 
-	public void setSessao(Sessao sessao) {
-		this.sessao = sessao;
+	public void setSecao(Secao secao) {
+		this.secao = secao;
 	}
 
 	@Override
