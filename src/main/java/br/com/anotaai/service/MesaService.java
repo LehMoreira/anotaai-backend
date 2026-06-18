@@ -5,19 +5,22 @@ import br.com.anotaai.dto.request.StatusMesaRequest;
 import br.com.anotaai.dto.response.MesaResponse;
 import br.com.anotaai.entity.Mesa;
 import br.com.anotaai.repository.MesaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class MesaService {
 
     private final MesaRepository mesaRepository;
+    	
+
+        public MesaService(MesaRepository mesaRepository) {
+		this.mesaRepository = mesaRepository;
+	}
 
 
-        public MesaResponse salvarMesa(CriarMesaRequest criarMesaRequest) {
+		public MesaResponse salvarMesa(CriarMesaRequest criarMesaRequest) {
 
         Mesa mesa = new Mesa();
 
@@ -26,23 +29,30 @@ public class MesaService {
         mesa.setCapacidade(criarMesaRequest.getCapacidade());
 
         mesa.setStatusMesa(criarMesaRequest.getStatusMesa());
+        mesa.setSessao(criarMesaRequest.getSessao());
 
         Mesa mesaSalva = mesaRepository.save(mesa);
 
-        MesaResponse mesaResponse = new MesaResponse();
-
-        mesaResponse.setId(mesaSalva.getId());
-        mesaResponse.setNumeroMesa(mesaSalva.getNumeroMesa());
-        mesaResponse.setCapacidade(mesaSalva.getCapacidade());
-        mesaResponse.setStatusMesa(mesaSalva.getStatusMesa());
-
-        return mesaResponse;
+        return new MesaResponse(
+	        mesaSalva.getId(),
+	        mesaSalva.getNumeroMesa(),
+	        mesaSalva.getCapacidade(),
+	        mesaSalva.getStatusMesa(),
+	        mesaSalva.getSessao().getNome());
 
     }
 
 
-    public List<Mesa> listarMesas() {
-        return mesaRepository.findAll();
+    public List<MesaResponse> listarMesas() {
+        return mesaRepository.findAll()
+        		.stream()
+                .map(mesa ->  new MesaResponse(
+                		mesa.getId(),
+                		mesa.getNumeroMesa(),
+                		mesa.getCapacidade(),
+                		mesa.getStatusMesa(),
+                		mesa.getSessao().getNome()))
+                    .toList();
     }
 
     public Mesa buscarMesaPorId(Long id) {

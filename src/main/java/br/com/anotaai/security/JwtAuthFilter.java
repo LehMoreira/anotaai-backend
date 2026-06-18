@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.anotaai.service.CustomUserDetailsService;
-import br.com.anotaai.service.JwtService;
+import br.com.anotaai.service.auth.JwtService;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

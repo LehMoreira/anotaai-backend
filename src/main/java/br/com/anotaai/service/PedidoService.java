@@ -7,19 +7,22 @@ import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.entity.Pedido;
 
 import br.com.anotaai.repository.PedidoRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
+    
+
+    public PedidoService(PedidoRepository pedidoRepository) {
+		this.pedidoRepository = pedidoRepository;
+	}
 
 
-    public List<Pedido> listarPedidos() {
+	public List<Pedido> listarPedidos() {
         return pedidoRepository.findAll();
     }
 

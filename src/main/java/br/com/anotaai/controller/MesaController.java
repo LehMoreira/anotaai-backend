@@ -7,7 +7,6 @@ import br.com.anotaai.entity.Mesa;
 
 import br.com.anotaai.service.MesaService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +15,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/mesas")
-@RequiredArgsConstructor
 public class MesaController {
 
     private final MesaService mesaService;
+    
+    public MesaController(MesaService mesaService) {
+		this.mesaService = mesaService;
+	}
 
-    @PostMapping
+	@PostMapping
     public ResponseEntity<MesaResponse> salvarMesa(@Valid @RequestBody CriarMesaRequest criarMesaRequest){
         MesaResponse mesaResponse = mesaService.salvarMesa(criarMesaRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(mesaResponse);
     }
 
     @GetMapping
-    public List<Mesa> listarMesas() {
+    public List<MesaResponse> listarMesas() {
         return mesaService.listarMesas();
     }
 

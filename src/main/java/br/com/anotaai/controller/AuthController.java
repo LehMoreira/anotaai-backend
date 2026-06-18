@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.anotaai.dto.JwtResponse;
-import br.com.anotaai.dto.LoginRequest;
-import br.com.anotaai.dto.RefreshTokenRequest;
-import br.com.anotaai.dto.RegisterRequest;
-import br.com.anotaai.service.AuthService;
+import br.com.anotaai.dto.request.LoginRequest;
+import br.com.anotaai.dto.request.RefreshTokenRequest;
+import br.com.anotaai.dto.request.RegisterRequest;
+import br.com.anotaai.dto.response.JwtResponse;
+import br.com.anotaai.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Auth")

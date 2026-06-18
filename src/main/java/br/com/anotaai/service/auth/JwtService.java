@@ -1,4 +1,4 @@
-package br.com.anotaai.service;
+package br.com.anotaai.service.auth;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
