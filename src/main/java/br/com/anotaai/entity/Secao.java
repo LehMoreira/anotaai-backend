@@ -15,15 +15,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "sessao")
-public class Sessao {
+@Table(name = "secao")
+public class Secao {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
 
-    @OneToMany(mappedBy = "sessao" , fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "secao" , fetch = FetchType.LAZY)
     private List<Mesa> mesas = new ArrayList<>();
 
 	public Long getId() {

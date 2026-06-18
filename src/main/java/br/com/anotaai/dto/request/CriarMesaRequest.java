@@ -1,7 +1,7 @@
 package br.com.anotaai.dto.request;
 
 
-import br.com.anotaai.entity.Sessao;
+import br.com.anotaai.entity.Secao;
 import br.com.anotaai.enums.StatusMesa;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,10 +20,10 @@ public class CriarMesaRequest {
     private StatusMesa statusMesa;
 
     @NotNull(message = "A área da mesa é obrigatoria!")
-    private Sessao sessao;
+    private Secao sessao;
     
 
-    public CriarMesaRequest(Long numeroMesa, int capacidade, StatusMesa statusMesa, Sessao sessao) {
+    public CriarMesaRequest(Long numeroMesa, int capacidade, StatusMesa statusMesa, Secao sessao) {
         this.numeroMesa = numeroMesa;
         this.capacidade = capacidade;
         this.statusMesa = statusMesa;
@@ -54,11 +54,11 @@ public class CriarMesaRequest {
         this.statusMesa = statusMesa;
     }
 
-	public Sessao getSessao() {
+	public Secao getSessao() {
 		return sessao;
 	}
 
-	public void setSessao(Sessao sessao) {
+	public void setSessao(Secao sessao) {
 		this.sessao = sessao;
 	}
     

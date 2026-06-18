@@ -29,7 +29,7 @@ public class MesaService {
         mesa.setCapacidade(criarMesaRequest.getCapacidade());
 
         mesa.setStatusMesa(criarMesaRequest.getStatusMesa());
-        mesa.setSessao(criarMesaRequest.getSessao());
+        mesa.setSecao(criarMesaRequest.getSessao());
 
         Mesa mesaSalva = mesaRepository.save(mesa);
 
@@ -38,7 +38,7 @@ public class MesaService {
 	        mesaSalva.getNumeroMesa(),
 	        mesaSalva.getCapacidade(),
 	        mesaSalva.getStatusMesa(),
-	        mesaSalva.getSessao().getNome());
+	        mesaSalva.getSecao().getNome());
 
     }
 
@@ -51,7 +51,7 @@ public class MesaService {
                 		mesa.getNumeroMesa(),
                 		mesa.getCapacidade(),
                 		mesa.getStatusMesa(),
-                		mesa.getSessao().getNome()))
+                		mesa.getSecao().getNome()))
                     .toList();
     }
 
