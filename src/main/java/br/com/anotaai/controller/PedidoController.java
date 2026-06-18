@@ -2,10 +2,14 @@ package br.com.anotaai.controller;
 
 
 
+import br.com.anotaai.dto.request.PedidoRequest;
 import br.com.anotaai.dto.request.StatusPedidoRequest;
+import br.com.anotaai.dto.response.PedidoResponse;
 import br.com.anotaai.entity.Pedido;
 import br.com.anotaai.service.PedidoService;
 import jakarta.validation.Valid;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,5 +43,10 @@ public class PedidoController {
     @PatchMapping("/{id}/status")
     public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedido){
         pedidoService.atualizarStatusPedido(id, statusPedido);
+    }
+    @PostMapping
+    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoRequest request) {
+
+        return ResponseEntity.ok(pedidoService.criarPedido(request));
     }
 }
