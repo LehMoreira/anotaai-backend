@@ -1,4 +1,4 @@
-package br.com.anotaai.dto;
+package br.com.anotaai.dto.response;
 
 import java.math.BigDecimal;
 import java.net.URI;

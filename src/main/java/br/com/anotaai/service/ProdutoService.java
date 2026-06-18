@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.dto.ProdutoResponse;
+import br.com.anotaai.dto.response.ProdutoResponse;
 import br.com.anotaai.entity.Produto;
 import br.com.anotaai.repository.ProdutoRepository;
 

@@ -1,4 +1,4 @@
-package br.com.anotaai.dto;
+package br.com.anotaai.dto.request;
 
 public record RegisterRequest(
 		

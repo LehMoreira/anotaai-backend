@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.anotaai.dto.ProdutoResponse;
+
+import br.com.anotaai.dto.response.ProdutoResponse;
 import br.com.anotaai.entity.Produto;
 import br.com.anotaai.service.ProdutoService;
 
@@ -20,7 +21,7 @@ import br.com.anotaai.service.ProdutoService;
 @RequestMapping("/produtos")
 @CrossOrigin(origins = "http://localhost:5173")
 public class ProdutoController {
-private final ProdutoService produtoService;
+	private final ProdutoService produtoService;
     
 
     public ProdutoController(ProdutoService produtoService) {
