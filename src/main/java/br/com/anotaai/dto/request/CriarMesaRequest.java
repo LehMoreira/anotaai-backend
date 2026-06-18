@@ -18,6 +18,7 @@ public class CriarMesaRequest {
 
     @NotNull(message = "O status da mesa é obrigatorio!")
     private StatusMesa statusMesa;
+
     @NotNull(message = "A área da mesa é obrigatoria!")
     private Sessao sessao;
     

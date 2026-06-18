@@ -26,7 +26,7 @@ private final ProdutoRepository produtoRepository;
                     produto.getNome(),
                     produto.getDescricao(),
                     produto.getPreco(),
-                    produto.isDisponivel(),
+                    produto.getDisponivel(),
                     produto.getImagemURL()))
                 .toList();
     }
@@ -34,9 +34,11 @@ private final ProdutoRepository produtoRepository;
         return produtoRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("id nao encontrado!"));
     }
+
     public Produto cadastrarProduto(Produto produto) {
         return produtoRepository.save(produto);
     }
+
     public void deletarProduto(Long id) {
     	produtoRepository.deleteById(id);
     }
