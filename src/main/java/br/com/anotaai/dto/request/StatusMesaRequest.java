@@ -2,9 +2,7 @@ package br.com.anotaai.dto.request;
 
 import br.com.anotaai.enums.StatusMesa;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 
 public class StatusMesaRequest {
@@ -12,7 +10,7 @@ public class StatusMesaRequest {
     @NotNull(message = "O status e obrigatorio!")
     private StatusMesa statusMesa;
 
-    public StatusMesaRequest(StatusMesa statusMesa) {
+    public StatusMesaRequest() {
 
     }
 

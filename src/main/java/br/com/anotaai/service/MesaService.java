@@ -58,11 +58,9 @@ public class MesaService {
     public void atualizarStatusMesa(Long id, StatusMesaRequest statusMesa) {
         Mesa mesa = buscarMesaPorId(id);
 
-        if (statusMesa.getStatusMesa() != mesa.getStatusMesa()) {
+        if (mesa.getStatusMesa() != statusMesa.getStatusMesa()){
             mesa.setStatusMesa(statusMesa.getStatusMesa());
-
         }
-
 
         mesaRepository.save(mesa);
     }

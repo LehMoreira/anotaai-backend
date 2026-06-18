@@ -51,7 +51,8 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/auth/**",
                                 "/mesas/**",
-                                "/pedidos/**"
+                                "/pedidos/**",
+                                "/produtos/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

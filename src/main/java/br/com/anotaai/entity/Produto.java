@@ -77,7 +77,7 @@ public class Produto {
 	}
 
 
-	public boolean isDisponivel() {
+	public boolean getDisponivel() {
 		return disponivel;
 	}
 
@@ -110,6 +110,7 @@ public class Produto {
 	public Categoria getCategoria() {
 		return categoria;
 	}
+
 
 
 	public void setCategoria(Categoria categoria) {
