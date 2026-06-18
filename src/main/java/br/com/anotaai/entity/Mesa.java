@@ -30,6 +30,10 @@ public class Mesa {
 
     @OneToMany(mappedBy = "mesa" , fetch = FetchType.LAZY )
     private List<Comanda> comandas = new ArrayList<>();
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sessao_id")
+    private Sessao sessao;
 
 	public Mesa() {}
 
@@ -79,6 +83,14 @@ public class Mesa {
 
 	public void setComandas(List<Comanda> comandas) {
 		this.comandas = comandas;
+	}
+	
+	public Sessao getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Sessao sessao) {
+		this.sessao = sessao;
 	}
 
 	@Override

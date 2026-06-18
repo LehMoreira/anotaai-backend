@@ -1,4 +1,4 @@
-package br.com.anotaai.service;
+package br.com.anotaai.service.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -6,14 +6,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.anotaai.dto.JwtResponse;
-import br.com.anotaai.dto.LoginRequest;
-import br.com.anotaai.dto.RefreshTokenRequest;
-import br.com.anotaai.dto.RegisterRequest;
+import br.com.anotaai.dto.request.LoginRequest;
+import br.com.anotaai.dto.request.RefreshTokenRequest;
+import br.com.anotaai.dto.request.RegisterRequest;
+import br.com.anotaai.dto.response.JwtResponse;
 import br.com.anotaai.entity.RefreshToken;
 import br.com.anotaai.entity.Usuario;
 import br.com.anotaai.repository.UsuarioRepository;
 import br.com.anotaai.security.CustomUserDetails;
+import br.com.anotaai.service.HistoricoLoginService;
 
 @Service
 public class AuthService {

@@ -1,4 +1,4 @@
-package br.com.anotaai.service;
+package br.com.anotaai.service.auth;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
