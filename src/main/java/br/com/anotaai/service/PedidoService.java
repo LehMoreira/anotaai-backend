@@ -57,15 +57,17 @@ public class PedidoService {
         pedidoRepository.deleteById(id);
     }
 
-    public void atualizarStatusPedido(Long id, StatusPedidoRequest statusPedido) {
+    public void atualizarStatusPedido(Long id, StatusPedidoRequest statusPedidoRequest) {
         Pedido pedido = listarPedidoPorId(id);
 
-        if (pedido.getStatusPedido() != statusPedido.getStatusPedido()) {
-            pedido.setStatusPedido(statusPedido.getStatusPedido());
+        if (pedido.getStatusPedido() != statusPedidoRequest.getStatusPedido()) {
+            pedido.setStatusPedido(statusPedidoRequest.getStatusPedido());
         }
 
         pedidoRepository.save(pedido);
     }
+
+
     
     public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
 

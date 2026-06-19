@@ -41,8 +41,8 @@ public class PedidoController {
     }
 
     @PatchMapping("/{id}/status")
-    public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedido){
-        pedidoService.atualizarStatusPedido(id, statusPedido);
+    public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedidoRequest){
+        pedidoService.atualizarStatusPedido(id, statusPedidoRequest);
     }
     @PostMapping
     public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoRequest request) {
