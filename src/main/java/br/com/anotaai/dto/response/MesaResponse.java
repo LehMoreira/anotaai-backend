@@ -1,5 +1,6 @@
 package br.com.anotaai.dto.response;
 
+import br.com.anotaai.entity.Secao;
 import br.com.anotaai.enums.StatusMesa;
 
 public record MesaResponse (
@@ -12,4 +13,4 @@ public record MesaResponse (
 
      StatusMesa statusMesa,
     
-     String sessao) {}
+     String secao) {}

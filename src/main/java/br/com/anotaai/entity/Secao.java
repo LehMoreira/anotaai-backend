@@ -49,8 +49,8 @@ public class Secao {
 	public void setMesas(List<Mesa> mesas) {
 		this.mesas = mesas;
 	}
-    
-    
 
+    public Secao() {
 
+    }
 }

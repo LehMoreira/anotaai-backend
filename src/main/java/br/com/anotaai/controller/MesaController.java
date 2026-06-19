@@ -2,6 +2,7 @@ package br.com.anotaai.controller;
 
 import br.com.anotaai.dto.request.CriarMesaRequest;
 import br.com.anotaai.dto.request.StatusMesaRequest;
+import br.com.anotaai.dto.response.AtualizarMesaResponse;
 import br.com.anotaai.dto.response.MesaResponse;
 import br.com.anotaai.entity.Mesa;
 
@@ -24,8 +25,8 @@ public class MesaController {
 	}
 
 	@PostMapping
-    public ResponseEntity<MesaResponse> salvarMesa(@Valid @RequestBody CriarMesaRequest criarMesaRequest){
-        MesaResponse mesaResponse = mesaService.salvarMesa(criarMesaRequest);
+    public ResponseEntity<MesaResponse> criarMesa(@Valid @RequestBody CriarMesaRequest criarMesaRequest){
+        MesaResponse mesaResponse = mesaService.criarMesa(criarMesaRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(mesaResponse);
     }
 
@@ -47,5 +48,10 @@ public class MesaController {
     @DeleteMapping("/{id}")
     public void DeletarMesa(@PathVariable Long id){
         mesaService.deletarMesa(id);
+    }
+
+    @PatchMapping("/{id}")
+    public void atualizarMesa(@PathVariable Long id, @Valid @RequestBody AtualizarMesaResponse atualizarMesaResponse){
+        mesaService.atualizarMesa(id,atualizarMesaResponse);
     }
 }
