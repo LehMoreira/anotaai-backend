@@ -3,8 +3,8 @@ package br.com.anotaai.controller;
 
 import br.com.anotaai.dto.request.CriarPagamentoRequest;
 import br.com.anotaai.dto.response.PagamentoResponse;
-import br.com.anotaai.entity.Pagamento;
 import br.com.anotaai.service.PagamentoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public void criarPagamento(@RequestBody CriarPagamentoRequest criarPagamentoRequest){
+    public void criarPagamento(@Valid @RequestBody CriarPagamentoRequest criarPagamentoRequest){
         pagamentoService.criarPagamento(criarPagamentoRequest);
     }
 

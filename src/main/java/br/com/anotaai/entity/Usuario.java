@@ -23,6 +23,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Notificacao> notificacoes = new ArrayList<>();
 
+    public Usuario( ) {
+
+    }
 
     public Long getId() {
         return id;

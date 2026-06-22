@@ -19,10 +19,10 @@ public class Notificacao {
 
     private LocalDateTime dataHora;
 
-    private boolean lida;
+    private boolean lida = false;
 
     @Enumerated(EnumType.STRING)
-    private TipoNotificacao tipo;
+    private TipoNotificacao tipoNotificacao;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,70 +30,68 @@ public class Notificacao {
     private Usuario usuario;
 
 
-	public Long getId() {
-		return id;
-	}
+    public Notificacao() {
 
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Notificacao(String mensagem, LocalDateTime dataHora, boolean lida, TipoNotificacao tipoNotificacao, Usuario usuario) {
 
+        this.mensagem = mensagem;
+        this.dataHora = dataHora;
+        this.lida = lida;
+        this.tipoNotificacao = tipoNotificacao;
+        this.usuario = usuario;
+    }
 
-	public String getMensagem() {
-		return mensagem;
-	}
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
+    public String getMensagem() {
+        return mensagem;
+    }
 
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
 
-	public LocalDateTime getDataHora() {
-		return dataHora;
-	}
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
 
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
 
-	public void setDataHora(LocalDateTime dataHora) {
-		this.dataHora = dataHora;
-	}
+    public boolean isLida() {
+        return lida;
+    }
 
+    public void setLida(boolean lida) {
+        this.lida = lida;
+    }
 
-	public boolean isLida() {
-		return lida;
-	}
+    public TipoNotificacao getTipoNotificacao() {
+        return tipoNotificacao;
+    }
 
+    public void setTipoNotificacao(TipoNotificacao tipoNotificacao) {
+        this.tipoNotificacao = tipoNotificacao;
+    }
 
-	public void setLida(boolean lida) {
-		this.lida = lida;
-	}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-	public TipoNotificacao getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(TipoNotificacao tipo) {
-		this.tipo = tipo;
-	}
-
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-
-	public Notificacao() {}
-
-
-	@Override
+    @Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
