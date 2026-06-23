@@ -5,6 +5,8 @@ import br.com.anotaai.dto.request.CriarPagamentoRequest;
 import br.com.anotaai.dto.response.PagamentoResponse;
 import br.com.anotaai.service.PagamentoService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,10 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public void criarPagamento(@Valid @RequestBody CriarPagamentoRequest criarPagamentoRequest){
-        pagamentoService.criarPagamento(criarPagamentoRequest);
+    public ResponseEntity<PagamentoResponse> criarPagamento(@Valid @RequestBody CriarPagamentoRequest criarPagamentoRequest){
+        PagamentoResponse pagamentoResponse =  pagamentoService.criarPagamento(criarPagamentoRequest);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pagamentoResponse);
     }
 
     @GetMapping

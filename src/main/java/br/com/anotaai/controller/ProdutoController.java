@@ -2,6 +2,8 @@ package br.com.anotaai.controller;
 
 import java.util.List;
 
+import br.com.anotaai.dto.request.CriarProdutoRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,7 +36,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public Produto buscarProdutoPorId(@PathVariable Long id){
+    public List<ProdutoResponse> buscarProdutoPorId(@PathVariable Long id){
         return produtoService.buscarProdutoPorId(id);
     }
 
@@ -43,9 +45,10 @@ public class ProdutoController {
     public void deletarProduto(@PathVariable Long id){
     	produtoService.deletarProduto(id);
     }
+
     @PostMapping
-    public ResponseEntity<Produto> save(@RequestBody Produto produto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.cadastrarProduto(produto));
+    public ResponseEntity<ProdutoResponse> criarProduto(@Valid @RequestBody CriarProdutoRequest criarProdutoRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criarProduto(criarProdutoRequest));
     }
 
 }

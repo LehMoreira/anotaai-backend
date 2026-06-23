@@ -1,10 +1,13 @@
 package br.com.anotaai.controller;
 
 import br.com.anotaai.dto.request.CriarNotificacaoRequest;
+import br.com.anotaai.dto.response.CategoriaResponse;
 import br.com.anotaai.dto.response.NotificacaoResponse;
 import br.com.anotaai.service.NotificacaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +24,10 @@ public class NotificacaoController {
     }
 
     @PostMapping
-    public NotificacaoResponse criarNotificacao(@Valid @RequestBody CriarNotificacaoRequest criarNotificacaoRequest) {
-        return notificacaoService.CriarNotificacao(criarNotificacaoRequest);
+    public ResponseEntity<NotificacaoResponse> criarNotificacao(@Valid @RequestBody CriarNotificacaoRequest criarNotificacaoRequest) {
+        NotificacaoResponse notificacaoResponse = notificacaoService.CriarNotificacao(criarNotificacaoRequest);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(notificacaoResponse);
     }
 
     @GetMapping

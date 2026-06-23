@@ -12,6 +12,7 @@ import br.com.anotaai.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,7 +29,7 @@ public class PagamentoService {
     public PagamentoResponse criarPagamento(CriarPagamentoRequest criarPagamentoRequest) {
         Pagamento pagamento = new Pagamento();
 
-        pagamento.setDataHora(criarPagamentoRequest.getDataHora());
+        pagamento.setDataHora(LocalDateTime.now());
         pagamento.setFormaPagamento(criarPagamentoRequest.getFormaPagamento());
         pagamento.setStatusPagamento(criarPagamentoRequest.getStatusPagamento());
 

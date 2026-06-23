@@ -11,9 +11,6 @@ import java.time.LocalDateTime;
 public class CriarPagamentoRequest {
 
 
-    @NotNull(message = "data e hora nao pode ser nulo")
-    private LocalDateTime dataHora;
-
     @NotNull(message = "forma de pagamento nao pode ser nulo")
     private FormaPagamento formaPagamento;
 
@@ -25,15 +22,6 @@ public class CriarPagamentoRequest {
 
     public CriarPagamentoRequest() {
 
-    }
-
-
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
     }
 
     public FormaPagamento getFormaPagamento() {

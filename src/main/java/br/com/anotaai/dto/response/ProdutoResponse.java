@@ -1,5 +1,7 @@
 package br.com.anotaai.dto.response;
 
+import br.com.anotaai.entity.Categoria;
+
 import java.math.BigDecimal;
 import java.net.URI;
 
@@ -9,6 +11,7 @@ public record ProdutoResponse(
  String descricao,
  BigDecimal preco,
  Boolean disponivel,
- URI imagemURL) {
+ URI imagemURL,
+ String nome_categoria) {
 
 }
