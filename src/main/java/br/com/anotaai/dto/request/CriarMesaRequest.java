@@ -17,14 +17,14 @@ public class CriarMesaRequest {
     private StatusMesa statusMesa;
 
     @NotNull(message = "a sessao tem que existir!!")
-    private Secao secao;
+    private Long secao_id;
 
 
-    public CriarMesaRequest(Long numeroMesa, int capacidade, StatusMesa statusMesa, Secao secao) {
+    public CriarMesaRequest(Long numeroMesa, int capacidade, StatusMesa statusMesa, Long secao_id) {
         this.numeroMesa = numeroMesa;
         this.capacidade = capacidade;
         this.statusMesa = statusMesa;
-        this.secao = secao;
+        this.secao_id = secao_id;
     }
 
     public Long getNumeroMesa() {
@@ -51,11 +51,11 @@ public class CriarMesaRequest {
         this.statusMesa = statusMesa;
     }
 
-    public Secao getSecao() {
-        return secao;
+    public Long getSecao_id() {
+        return secao_id;
     }
 
-    public void setSecao(Secao secao) {
-        this.secao = secao;
+    public void setSecao_id(Long secao_id) {
+        this.secao_id = secao_id;
     }
 }

@@ -20,43 +20,39 @@ public class MesaService {
 
 
     private final MesaRepository mesaRepository;
+    private final SecaoRepository secaoRepository;
 
 
 
-    public MesaService(MesaRepository mesaRepository) {
+    public MesaService(MesaRepository mesaRepository,SecaoRepository secaoRepository) {
         this.mesaRepository = mesaRepository;
+        this.secaoRepository = secaoRepository;
 
     }
 
     public MesaResponse criarMesa(CriarMesaRequest criarMesaRequest) {
 
-
         Mesa mesa = new Mesa();
-
 
         mesa.setNumeroMesa(criarMesaRequest.getNumeroMesa());
 
-
         mesa.setCapacidade(criarMesaRequest.getCapacidade());
-
 
         mesa.setStatusMesa(criarMesaRequest.getStatusMesa());
 
-        mesa.setSecao(criarMesaRequest.getSecao());
+        Secao secao = secaoRepository.findById(criarMesaRequest.getSecao_id()).orElseThrow(() -> new RuntimeException("Id nao existe!"));
 
+        mesa.setSecao(secao);
 
         Mesa mesaSalva = mesaRepository.save(mesa);
 
-
         MesaResponse response = new MesaResponse(
-                mesaSalva.getId(),
                 mesaSalva.getNumeroMesa(),
                 mesaSalva.getCapacidade(),
                 mesaSalva.getStatusMesa(),
                 mesaSalva.getSecao().getNome());
 
         return response;
-
 
     }
 
@@ -65,7 +61,6 @@ public class MesaService {
         return mesaRepository.findAll()
                 .stream()
                 .map(mesa -> new MesaResponse(
-                        mesa.getId(),
                         mesa.getNumeroMesa(),
                         mesa.getCapacidade(),
                         mesa.getStatusMesa(),
@@ -74,10 +69,15 @@ public class MesaService {
     }
 
 
-    public Mesa buscarMesaPorId(Long id) {
-        return mesaRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("id nao encontrado!")
-        );
+    public List<MesaResponse> buscarMesaPorId(Long id) {
+        return mesaRepository.findById(id)
+                .stream()
+                .map(mesa -> new MesaResponse(
+                        mesa.getNumeroMesa(),
+                        mesa.getCapacidade(),
+                        mesa.getStatusMesa(),
+                        mesa.getSecao().getNome()))
+                .toList();
     }
 
 
@@ -87,7 +87,7 @@ public class MesaService {
 
 
     public void atualizarStatusMesa(Long id, StatusMesaRequest statusMesa) {
-        Mesa mesa = buscarMesaPorId(id);
+        Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id nao existe!"));
 
 
         if (mesa.getStatusMesa() != statusMesa.getStatusMesa()) {
@@ -102,7 +102,8 @@ public class MesaService {
 
     public void atualizarMesa(Long id, AtualizarMesaResponse atualizarMesaResponse) {
 
-        Mesa mesa = buscarMesaPorId(id);
+        Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id nao existe!"));
+
 
         if (mesa.getNumeroMesa() != atualizarMesaResponse.getNumeroMesa()){
             mesa.setNumeroMesa(atualizarMesaResponse.getNumeroMesa());

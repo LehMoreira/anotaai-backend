@@ -36,7 +36,7 @@ public class MesaController {
     }
 
     @GetMapping("/{id}")
-    public Mesa listarMesaPorId(@PathVariable Long id){
+    public List<MesaResponse> listarMesaPorId(@PathVariable Long id){
         return mesaService.buscarMesaPorId(id);
     }
 
