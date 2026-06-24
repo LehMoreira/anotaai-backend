@@ -3,6 +3,7 @@ package br.com.anotaai.dto.response;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.anotaai.entity.ItemPedido;
 import br.com.anotaai.enums.StatusPedido;
 
 public record PedidoResponse(

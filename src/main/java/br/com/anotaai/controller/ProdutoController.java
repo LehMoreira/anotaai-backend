@@ -6,6 +6,7 @@ import br.com.anotaai.dto.request.CriarProdutoRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.anotaai.dto.response.ProdutoResponse;
-import br.com.anotaai.entity.Produto;
 import br.com.anotaai.service.ProdutoService;
 
 @RestController
@@ -34,13 +34,13 @@ public class ProdutoController {
     public List<ProdutoResponse> listarProdutos() {
         return produtoService.listarProdutos();
     }
-
+	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM','')")
     @GetMapping("/{id}")
     public List<ProdutoResponse> buscarProdutoPorId(@PathVariable Long id){
         return produtoService.buscarProdutoPorId(id);
     }
 
-
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @DeleteMapping("/{id}")
     public void deletarProduto(@PathVariable Long id){
     	produtoService.deletarProduto(id);

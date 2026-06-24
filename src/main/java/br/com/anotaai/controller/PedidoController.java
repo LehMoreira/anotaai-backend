@@ -10,6 +10,7 @@ import br.com.anotaai.service.PedidoService;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +25,12 @@ public class PedidoController {
     public PedidoController(PedidoService pedidoService) {
 		this.pedidoService = pedidoService;
 	}
-
+	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
 	@GetMapping
-    public List<Pedido> listarPedidos(){
+    public List<PedidoResponse> listarPedidos(){
         return pedidoService.listarPedidos();
     }
-
+	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
     @GetMapping("/{id}")
     public Pedido listarPedidos(@PathVariable Long id){
         return pedidoService.listarPedidoPorId(id);
@@ -39,7 +40,7 @@ public class PedidoController {
     public void deletarPedido(@PathVariable Long id){
         pedidoService.deletarPedido(id);
     }
-
+	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
     @PatchMapping("/{id}/status")
     public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedidoRequest){
         pedidoService.atualizarStatusPedido(id, statusPedidoRequest);

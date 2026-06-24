@@ -31,8 +31,8 @@ public class UsuarioService {
     public Usuario findByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
-    public Usuario findByLogin(String login) {
-        return usuarioRepository.findByLogin(login);
+    public Usuario findByNome(String nome) {
+        return usuarioRepository.findByNome(nome);
     }
 
     public Usuario save(Usuario usuario) {

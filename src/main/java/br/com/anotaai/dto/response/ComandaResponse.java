@@ -10,6 +10,7 @@ public record ComandaResponse(
         LocalDate dataAbertura,
         BigDecimal valorTotal,
         StatusComanda status,
-        Long mesaId) {
+        Long numeroMesa,
+        LocalDate dataFechamento) {
 
 }

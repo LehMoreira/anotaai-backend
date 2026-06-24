@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtFilter;
@@ -44,21 +46,21 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/",
-                                "/usuarios",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
                                 "/auth/**",
-                                "/mesas/**",
-                                "/pedidos/**",
-                                "/secao/**",
+                                "/usuarios/**",
                                 "/categorias/**",
                                 "/comandas/**",
-                                "/produtos/**",
-                                "/pagamentos/**",
-                                "/notificacoes/**"
+                                "/pagamentos/**"
                         ).permitAll()
+                        .requestMatchers("/mesas/**").hasAnyRole("ADMIN", "GARCOM", "")
+                        .requestMatchers("/pedidos/**").authenticated()
+                        .requestMatchers("/notificacoes/**").authenticated()
+                        .requestMatchers("/produtos/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .cors(cors -> corsConfigurationSource())

@@ -45,7 +45,7 @@ public class NotificacaoService {
         notificacaoResponse.setDataHora(notificacaoAtualizada.getDataHora());
         notificacaoResponse.setLida(notificacaoAtualizada.isLida());
         notificacaoResponse.setTipoNotificacao(notificacaoAtualizada.getTipoNotificacao());
-        notificacaoResponse.setLogin(notificacaoAtualizada.getUsuario().getLogin());
+        notificacaoResponse.setLogin(notificacaoAtualizada.getUsuario().getNome());
 
         return notificacaoResponse;
 
@@ -61,20 +61,20 @@ public class NotificacaoService {
                                 notificacao.getDataHora(),
                                 notificacao.isLida(),
                                 notificacao.getTipoNotificacao(),
-                                notificacao.getUsuario().getLogin()
+                                notificacao.getUsuario().getNome()
                         )).toList();
     }
 
 
-    public List<NotificacaoResponse> buscarNotificacaoPorUsuario(String login) {
+    public List<NotificacaoResponse> buscarNotificacaoPorUsuario(String nome) {
 
-        return notificacaoRepository.findByUsuario_Login(login).stream().map(
+        return notificacaoRepository.findByUsuario_Nome(nome).stream().map(
                 notificacao -> new NotificacaoResponse(
                         notificacao.getMensagem(),
                         notificacao.getDataHora(),
                         notificacao.isLida(),
                         notificacao.getTipoNotificacao(),
-                        notificacao.getUsuario().getLogin()
+                        notificacao.getUsuario().getNome()
                 )).toList();
 
     }
