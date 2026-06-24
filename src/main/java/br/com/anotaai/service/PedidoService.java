@@ -42,8 +42,27 @@ public class PedidoService {
 	}
 
 
-	public List<Pedido> listarPedidos() {
-        return pedidoRepository.findAll();
+	public List<PedidoResponse> listarPedidos() {
+        return pedidoRepository.findAll()
+        		.stream()
+                .map(pedido -> new PedidoResponse(
+                        pedido.getId(),
+                        pedido.getDataHora(),
+                        pedido.getObservacao(),
+                        pedido.getStatusPedido(),
+                        pedido.getMesa().getNumeroMesa(),
+                        pedido.getUsuario().getNome(),
+                        pedido.getItemPedidoList()
+                        .stream()
+                        .map(item -> new ItemPedidoResponse(
+                                item.getId(),
+                                item.getQuantidade(),
+                                item.getPrecoUnitario(),
+                                item.getStatusEntrega(),
+                                item.getProduto().getNome(),
+                                pedido.getId()))
+                        .toList()))
+                .toList();
     }
 
 
@@ -121,7 +140,7 @@ public class PedidoService {
         		pedidoSalvo.getObservacao(),
         		pedidoSalvo.getStatusPedido(),
         		pedidoSalvo.getMesa().getNumeroMesa(),
-        		pedidoSalvo.getUsuario().getLogin(),
+        		pedidoSalvo.getUsuario().getNome(),
         		pedidoSalvo.getItemPedidoList()
                 .stream()
                 .map(item -> new ItemPedidoResponse(

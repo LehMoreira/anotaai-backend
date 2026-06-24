@@ -2,6 +2,6 @@ package br.com.anotaai.dto.request;
 
 public record RegisterRequest(
 		
-		String login,
+		String nome,
         String email,
         String senha) {}

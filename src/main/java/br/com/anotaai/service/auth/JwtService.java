@@ -34,7 +34,7 @@ public class JwtService {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(user.getUsername())
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(
                         Instant.now().plus(expirationMinutes, ChronoUnit.MINUTES)))

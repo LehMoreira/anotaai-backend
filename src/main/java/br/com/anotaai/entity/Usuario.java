@@ -12,7 +12,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
+    private String nome;
     private String email;
     private String password;
     private Roles role;
@@ -35,12 +35,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getNome() {
+        return nome;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
