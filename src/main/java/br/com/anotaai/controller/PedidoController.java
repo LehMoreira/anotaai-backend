@@ -1,11 +1,11 @@
 package br.com.anotaai.controller;
 
 
-
 import br.com.anotaai.dto.request.PedidoRequest;
 import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.dto.response.PedidoResponse;
 import br.com.anotaai.entity.Pedido;
+import br.com.anotaai.enums.StatusPedido;
 import br.com.anotaai.service.PedidoService;
 import jakarta.validation.Valid;
 
@@ -23,28 +23,37 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
     public PedidoController(PedidoService pedidoService) {
-		this.pedidoService = pedidoService;
-	}
-	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
-	@GetMapping
-    public List<PedidoResponse> listarPedidos(){
+        this.pedidoService = pedidoService;
+    }
+
+    @GetMapping
+    public List<PedidoResponse> listarPedidos() {
         return pedidoService.listarPedidos();
     }
-	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
     @GetMapping("/{id}")
-    public Pedido listarPedidos(@PathVariable Long id){
+    public Pedido listarPedidosPorId(@PathVariable Long id) {
         return pedidoService.listarPedidoPorId(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
+    @GetMapping("/status")
+    public List<PedidoResponse> listarPedidoPorStatus(@RequestParam StatusPedido statusPedido) {
+        return pedidoService.listarPorStatus(statusPedido);
+    }
+
     @DeleteMapping("/{id}")
-    public void deletarPedido(@PathVariable Long id){
+    public void deletarPedido(@PathVariable Long id) {
         pedidoService.deletarPedido(id);
     }
-	@PreAuthorize("hasAnyRole('ADMIN', 'GARCOM')")
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
     @PatchMapping("/{id}/status")
-    public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedidoRequest){
+    public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedidoRequest) {
         pedidoService.atualizarStatusPedido(id, statusPedidoRequest);
     }
+
     @PostMapping
     public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoRequest request) {
 

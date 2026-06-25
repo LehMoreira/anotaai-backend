@@ -37,6 +37,7 @@ public class SecaoService {
                 secaoAtualizada.getNome(),
                 secaoAtualizada.getMesas().stream().map(
                         mesa -> new MesaResponse(
+                                mesa.getId(),
                                 mesa.getNumeroMesa(),
                                 mesa.getCapacidade(),
                                 mesa.getStatusMesa(),
@@ -58,6 +59,7 @@ public class SecaoService {
                         sessao.getMesas().stream().map(
                                 mesa -> new MesaResponse(
                                         mesa.getId(),
+                                        mesa.getNumeroMesa(),
                                         mesa.getCapacidade(),
                                         mesa.getStatusMesa(),
                                         mesa.getSecao().getNome()
@@ -74,6 +76,7 @@ public class SecaoService {
                         sessao.getNome(),
                         sessao.getMesas().stream().map(mesa -> new MesaResponse(
                                 mesa.getId(),
+                                mesa.getNumeroMesa(),
                                 mesa.getCapacidade(),
                                 mesa.getStatusMesa(),
                                 mesa.getSecao().getNome()

@@ -3,6 +3,7 @@ package br.com.anotaai.entity;
 
 import br.com.anotaai.enums.StatusMesa;
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private Long numeroMesa;
 
     private int capacidade;

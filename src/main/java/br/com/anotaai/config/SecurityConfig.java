@@ -54,9 +54,10 @@ public class SecurityConfig {
                                 "/usuarios/**",
                                 "/categorias/**",
                                 "/comandas/**",
-                                "/pagamentos/**"
+                                "/pagamentos/**",
+                                "/secao/**"
                         ).permitAll()
-                        .requestMatchers("/mesas/**").hasAnyRole("ADMIN", "GARCOM", "")
+                        .requestMatchers("/mesas/**").hasAnyRole("ADMIN", "WAITER", "")
                         .requestMatchers("/pedidos/**").authenticated()
                         .requestMatchers("/notificacoes/**").authenticated()
                         .requestMatchers("/produtos/**").authenticated()
@@ -75,7 +76,7 @@ public class SecurityConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOriginPatterns(List.of("*"));
-		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
 		config.setAllowedHeaders(List.of("*"));
 		config.setAllowCredentials(true);
 		

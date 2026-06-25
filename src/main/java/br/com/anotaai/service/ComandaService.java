@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.anotaai.dto.request.ComandaRequest;
 import br.com.anotaai.dto.response.ComandaResponse;
-import br.com.anotaai.dto.response.MesaResponse;
 import br.com.anotaai.entity.Comanda;
 import br.com.anotaai.entity.Mesa;
 import br.com.anotaai.enums.StatusComanda;

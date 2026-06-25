@@ -47,6 +47,7 @@ public class MesaService {
         Mesa mesaSalva = mesaRepository.save(mesa);
 
         MesaResponse response = new MesaResponse(
+                mesaSalva.getId(),
                 mesaSalva.getNumeroMesa(),
                 mesaSalva.getCapacidade(),
                 mesaSalva.getStatusMesa(),
@@ -61,6 +62,7 @@ public class MesaService {
         return mesaRepository.findAll()
                 .stream()
                 .map(mesa -> new MesaResponse(
+                        mesa.getId(),
                         mesa.getNumeroMesa(),
                         mesa.getCapacidade(),
                         mesa.getStatusMesa(),
@@ -73,6 +75,7 @@ public class MesaService {
         return mesaRepository.findById(id)
                 .stream()
                 .map(mesa -> new MesaResponse(
+                        mesa.getId(),
                         mesa.getNumeroMesa(),
                         mesa.getCapacidade(),
                         mesa.getStatusMesa(),

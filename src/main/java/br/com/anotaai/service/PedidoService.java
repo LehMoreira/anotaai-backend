@@ -6,17 +6,10 @@ import br.com.anotaai.dto.request.PedidoRequest;
 import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.dto.response.ItemPedidoResponse;
 import br.com.anotaai.dto.response.PedidoResponse;
-import br.com.anotaai.entity.Comanda;
-import br.com.anotaai.entity.ItemPedido;
-import br.com.anotaai.entity.Pedido;
-import br.com.anotaai.entity.Produto;
-import br.com.anotaai.entity.Usuario;
+import br.com.anotaai.entity.*;
 import br.com.anotaai.enums.StatusItemPedido;
 import br.com.anotaai.enums.StatusPedido;
-import br.com.anotaai.repository.ComandaRepository;
-import br.com.anotaai.repository.PedidoRepository;
-import br.com.anotaai.repository.ProdutoRepository;
-import br.com.anotaai.repository.UsuarioRepository;
+import br.com.anotaai.repository.*;
 
 import org.springframework.stereotype.Service;
 
@@ -32,13 +25,15 @@ public class PedidoService {
     private final ProdutoRepository produtoRepository;
     private final UsuarioRepository usuarioRepository;
     private final ComandaRepository comandaRepository;
+    private final MesaRepository mesaRepository;
 
 	public PedidoService(PedidoRepository pedidoRepository, ProdutoRepository produtoRepository,
-			UsuarioRepository usuarioRepository, ComandaRepository comandaRepository) {
+			UsuarioRepository usuarioRepository, ComandaRepository comandaRepository,MesaRepository mesaRepository) {
 		this.pedidoRepository = pedidoRepository;
 		this.produtoRepository = produtoRepository;
 		this.usuarioRepository = usuarioRepository;
 		this.comandaRepository = comandaRepository;
+        this.mesaRepository = mesaRepository;
 	}
 
 
@@ -72,6 +67,30 @@ public class PedidoService {
         );
     }
 
+    public List<PedidoResponse> listarPorStatus( StatusPedido statusPedido){
+
+        return pedidoRepository.findByStatusPedido(statusPedido).stream().map(
+                pedido -> new PedidoResponse(
+                        pedido.getId(),
+                        pedido.getDataHora(),
+                        pedido.getObservacao(),
+                        pedido.getStatusPedido(),
+                        pedido.getMesa().getNumeroMesa(),
+                        pedido.getUsuario().getNome(),
+                        pedido.getItemPedidoList().stream().map(
+                                itemPedido -> new ItemPedidoResponse(
+                                        itemPedido.getId(),
+                                        itemPedido.getQuantidade(),
+                                        itemPedido.getPrecoUnitario(),
+                                        itemPedido.getStatusEntrega(),
+                                        itemPedido.getProduto().getNome(),
+                                        itemPedido.getPedido().getId()
+                                )
+                        ).toList()
+                )
+        ).toList();
+    }
+
     public void deletarPedido(Long id) {
         pedidoRepository.deleteById(id);
     }
@@ -96,12 +115,16 @@ public class PedidoService {
         Usuario usuario = usuarioRepository.findById(pedidoRequest.usuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        Mesa mesa = mesaRepository.findById(pedidoRequest.mesaId()).orElseThrow(
+                () -> new RuntimeException("Mesa nao encontrada")
+        );
+
         Pedido pedido = new Pedido();
 
         pedido.setDataHora(LocalDateTime.now());
         pedido.setObservacao(pedidoRequest.observacao());
         pedido.setComanda(comanda);
-        pedido.setMesa(comanda.getMesa());
+        pedido.setMesa(mesa);
         pedido.setUsuario(usuario);
         pedido.setStatusPedido(StatusPedido.NOVO_PEDIDO);
 
