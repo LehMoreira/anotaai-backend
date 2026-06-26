@@ -7,7 +7,9 @@ import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.dto.response.ItemPedidoResponse;
 import br.com.anotaai.dto.response.PedidoResponse;
 import br.com.anotaai.entity.*;
+import br.com.anotaai.enums.StatusComanda;
 import br.com.anotaai.enums.StatusItemPedido;
+import br.com.anotaai.enums.StatusMesa;
 import br.com.anotaai.enums.StatusPedido;
 import br.com.anotaai.repository.*;
 
@@ -17,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PedidoService {
@@ -105,26 +108,23 @@ public class PedidoService {
         pedidoRepository.save(pedido);
     }
 
-
     
     public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
 
     	Comanda comanda = comandaRepository.findById(pedidoRequest.comandaId())
     	        .orElseThrow(() -> new RuntimeException("Comanda não encontrada"));
-
+    	if (comanda.getStatus() != StatusComanda.ABERTA) {
+            throw new RuntimeException("A comanda está fechada!");
+        }
         Usuario usuario = usuarioRepository.findById(pedidoRequest.usuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        Mesa mesa = mesaRepository.findById(pedidoRequest.mesaId()).orElseThrow(
-                () -> new RuntimeException("Mesa nao encontrada")
-        );
 
         Pedido pedido = new Pedido();
 
         pedido.setDataHora(LocalDateTime.now());
         pedido.setObservacao(pedidoRequest.observacao());
         pedido.setComanda(comanda);
-        pedido.setMesa(mesa);
+        pedido.setMesa(comanda.getMesa());
         pedido.setUsuario(usuario);
         pedido.setStatusPedido(StatusPedido.NOVO_PEDIDO);
 
@@ -148,7 +148,12 @@ public class PedidoService {
 
         pedido.setItemPedidoList(itens);
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
+        
         comanda.getPedidos().add(pedido);
+        
+        Mesa mesa = mesaRepository
+    	        .findByNumeroMesa(comanda.getMesa().getNumeroMesa());
+        mesa.setStatusMesa(StatusMesa.NOVO_PEDIDO);
         
         BigDecimal totalPedido = itens.stream()
                 .map(item -> item.getPrecoUnitario()

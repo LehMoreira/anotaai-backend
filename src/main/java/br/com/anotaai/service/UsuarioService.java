@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.anotaai.dto.request.UsuarioRequest;
 import br.com.anotaai.entity.Usuario;
+import br.com.anotaai.enums.Roles;
 import br.com.anotaai.repository.UsuarioRepository;
 
 @Service
@@ -32,14 +34,17 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-    public Usuario findByNome(String nome) {
-        return usuarioRepository.findByNome(nome);
-    }
 
-    public Usuario save(Usuario usuario) {
+    public Usuario save(UsuarioRequest usuarioRequest) {
+    	if (usuarioRepository.findByEmail(usuarioRequest.email()) != null) {
+            throw new RuntimeException("Email já cadastrado");
+        }
+    	Usuario usuario = new Usuario();
+    	usuario.setNome(usuarioRequest.nome());
+    	usuario.setEmail(usuarioRequest.email());
     	usuario.setPassword(
-    	        passwordEncoder.encode(usuario.getPassword())
-    	    );
+    	        passwordEncoder.encode(usuarioRequest.senha()));
+    	usuario.setRole(usuarioRequest.role());
         return usuarioRepository.save(usuario);
     }
 

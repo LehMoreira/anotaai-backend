@@ -24,7 +24,8 @@ public class MesaController {
     public MesaController(MesaService mesaService) {
         this.mesaService = mesaService;
     }
-
+    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<MesaResponse> criarMesa(@Valid @RequestBody CriarMesaRequest criarMesaRequest) {
         MesaResponse mesaResponse = mesaService.criarMesa(criarMesaRequest);

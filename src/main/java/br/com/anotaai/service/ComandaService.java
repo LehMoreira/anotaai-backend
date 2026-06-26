@@ -11,6 +11,7 @@ import br.com.anotaai.dto.response.ComandaResponse;
 import br.com.anotaai.entity.Comanda;
 import br.com.anotaai.entity.Mesa;
 import br.com.anotaai.enums.StatusComanda;
+import br.com.anotaai.enums.StatusMesa;
 import br.com.anotaai.repository.ComandaRepository;
 import br.com.anotaai.repository.MesaRepository;
 
@@ -29,12 +30,16 @@ public class ComandaService {
     }
 
     public ComandaResponse abrirComanda(ComandaRequest comandaRequest) {
-    	System.out.println("Mesa recebida: " + comandaRequest.mesaId());
 
-    	Mesa mesa = mesaRepository
-    	        .findByNumeroMesa(comandaRequest.mesaId().intValue())
-    	        .orElseThrow(() ->
-    	                new RuntimeException("Mesa não encontrada"));
+    	Mesa mesa = mesaRepository.findByNumeroMesa(comandaRequest.numeroMesa());
+    	if (mesa != null) {
+            throw new RuntimeException("Email já cadastrado");
+        }
+    	if (mesa.getStatusMesa() != StatusMesa.LIVRE) {
+            throw new RuntimeException("A mesa já está ocupada");
+        }
+    	
+        mesa.setStatusMesa(StatusMesa.OCUPADA);
 
         Comanda comanda = new Comanda();
 

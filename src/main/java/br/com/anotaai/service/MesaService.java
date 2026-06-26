@@ -7,6 +7,7 @@ import br.com.anotaai.dto.response.AtualizarMesaResponse;
 import br.com.anotaai.dto.response.MesaResponse;
 import br.com.anotaai.entity.Mesa;
 import br.com.anotaai.entity.Secao;
+import br.com.anotaai.enums.StatusMesa;
 import br.com.anotaai.repository.MesaRepository;
 import br.com.anotaai.repository.SecaoRepository;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,13 @@ public class MesaService {
 
         Mesa mesa = new Mesa();
 
-        mesa.setNumeroMesa(criarMesaRequest.getNumeroMesa());
+        mesa.setNumeroMesa(criarMesaRequest.numeroMesa());
 
-        mesa.setCapacidade(criarMesaRequest.getCapacidade());
+        mesa.setCapacidade(criarMesaRequest.capacidade());
 
-        mesa.setStatusMesa(criarMesaRequest.getStatusMesa());
+        mesa.setStatusMesa(StatusMesa.LIVRE);;
 
-        Secao secao = secaoRepository.findById(criarMesaRequest.getSecao_id()).orElseThrow(() -> new RuntimeException("Id nao existe!"));
+        Secao secao = secaoRepository.findById(criarMesaRequest.secao_id()).orElseThrow(() -> new RuntimeException("Id nao existe!"));
 
         mesa.setSecao(secao);
 
