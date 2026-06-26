@@ -67,8 +67,10 @@ accessToken, refreshToken.getToken(),user.getUser().getRole().name());
         }
 
         Usuario user = new Usuario();
+        user.setNome(request.nome());
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.senha()));
+        user.setRole(request.role().CLIENT);
         userRepository.save(user);
     }
 
