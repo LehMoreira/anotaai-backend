@@ -1,5 +1,4 @@
 package br.com.anotaai.dto.request;
 
-public record ComandaRequest(Long numeroMesa) {
-
-}
+public record ComandaRequest(
+        Long numeroMesa) {}

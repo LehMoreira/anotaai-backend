@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.anotaai.dto.request.ItemPedidoRequest;
 import br.com.anotaai.dto.response.ItemPedidoResponse;
@@ -16,6 +12,8 @@ import br.com.anotaai.service.ItemPedidoService;
 
 @RestController
 @RequestMapping("/pedidos/item")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class ItemPedidoController {
 	private final ItemPedidoService itemPedidoService;
 

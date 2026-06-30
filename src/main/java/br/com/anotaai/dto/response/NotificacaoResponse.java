@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 
 public class NotificacaoResponse {
 
+    private Long id;
+
     private String mensagem;
 
     private LocalDateTime dataHora;
@@ -17,7 +19,8 @@ public class NotificacaoResponse {
 
     private String login;
 
-    public NotificacaoResponse(String mensagem, LocalDateTime dataHora, boolean lida, TipoNotificacao tipoNotificacao, String login) {
+    public NotificacaoResponse(Long id, String mensagem, LocalDateTime dataHora, boolean lida, TipoNotificacao tipoNotificacao, String login) {
+        this.id = id;
         this.mensagem = mensagem;
         this.dataHora = dataHora;
         this.lida = lida;
@@ -67,5 +70,13 @@ public class NotificacaoResponse {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

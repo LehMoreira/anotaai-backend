@@ -57,6 +57,7 @@ public class NotificacaoService {
                 .stream()
                 .map(
                         notificacao -> new NotificacaoResponse(
+                                notificacao.getId(),
                                 notificacao.getMensagem(),
                                 notificacao.getDataHora(),
                                 notificacao.isLida(),
@@ -70,6 +71,7 @@ public class NotificacaoService {
 
         return notificacaoRepository.findByUsuario_Nome(nome).stream().map(
                 notificacao -> new NotificacaoResponse(
+                        notificacao.getId(),
                         notificacao.getMensagem(),
                         notificacao.getDataHora(),
                         notificacao.isLida(),

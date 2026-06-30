@@ -1,7 +1,5 @@
 package br.com.anotaai.repository;
 
-import br.com.anotaai.dto.request.StatusPedidoRequest;
-import br.com.anotaai.dto.response.PedidoResponse;
 import br.com.anotaai.entity.Pedido;
 import br.com.anotaai.enums.StatusPedido;
 import org.springframework.data.jpa.repository.JpaRepository;

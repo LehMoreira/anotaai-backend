@@ -6,19 +6,15 @@ import br.com.anotaai.dto.request.CriarSecaoRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import br.com.anotaai.dto.response.SecaoResponse;
 import br.com.anotaai.entity.Secao;
 import br.com.anotaai.service.SecaoService;
 
 @RestController
 @RequestMapping("/secao")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class SecaoController {
     private final SecaoService secaoService;
 

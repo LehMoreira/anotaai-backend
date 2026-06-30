@@ -13,6 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pagamentos")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class PagamentoController {
 
     private final PagamentoService pagamentoService;
@@ -31,5 +33,11 @@ public class PagamentoController {
     @GetMapping
     public List<PagamentoResponse> listarPagamento(){
         return pagamentoService.listarpagamento();
+    }
+
+    @PatchMapping("/{id}/concluir")
+    public ResponseEntity<Void> concluirPagamento(@PathVariable Long id) {
+        pagamentoService.concluirPagamento(id);
+        return ResponseEntity.ok().build();
     }
 }

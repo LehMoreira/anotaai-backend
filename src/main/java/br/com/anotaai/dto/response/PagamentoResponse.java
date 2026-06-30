@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 
 public class PagamentoResponse {
 
+    private Long id;
+
     private BigDecimal valor;
 
     private LocalDateTime dataHora;
@@ -20,7 +22,8 @@ public class PagamentoResponse {
 
     private Long comanda_id ;
 
-    public PagamentoResponse(BigDecimal valor, LocalDateTime dataHora, FormaPagamento formaPagamento, StatusPagamento statusPagamento, Long comanda_id) {
+    public PagamentoResponse(Long id, BigDecimal valor, LocalDateTime dataHora, FormaPagamento formaPagamento, StatusPagamento statusPagamento, Long comanda_id) {
+        this.id = id;
         this.valor = valor;
         this.dataHora = dataHora;
         this.formaPagamento = formaPagamento;
@@ -70,5 +73,13 @@ public class PagamentoResponse {
 
     public void setComanda_id(Long comanda_id) {
         this.comanda_id = comanda_id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

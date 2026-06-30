@@ -40,33 +40,32 @@ public class ItemPedidoService {
                 		itemPedido.getPedido().getId()))
                     .toList();
 	}
-	
-	public ItemPedidoResponse criarItemPedido(ItemPedidoRequest itemPedidoRequest) {
-		
-		Produto produto = produtoRepository.findById(itemPedidoRequest.idProduto())
-	            .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
-	    // Pedido pedido = pedidoRepository.findById(itemPedidoRequest.idPedido())
-	   //         .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
-	    
+    public ItemPedidoResponse criarItemPedido(ItemPedidoRequest itemPedidoRequest) {
+
+        Produto produto = produtoRepository.findById(itemPedidoRequest.idProduto())
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        Pedido pedido = pedidoRepository.findById(itemPedidoRequest.idProduto())
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
         ItemPedido item = new ItemPedido();
 
         item.setQuantidade(itemPedidoRequest.quantidade());
         item.setPrecoUnitario(produto.getPreco());
         item.setStatusEntrega(StatusItemPedido.AGUARDANDO);
         item.setProduto(produto);
-        //item.setPedido();
+        item.setPedido(pedido);
 
         ItemPedido itemSalvo = itemPedidoRepository.save(item);
 
         return new ItemPedidoResponse(
-        		itemSalvo.getId(),
+                itemSalvo.getId(),
                 itemSalvo.getQuantidade(),
                 itemSalvo.getPrecoUnitario(),
                 itemSalvo.getStatusEntrega(),
                 itemSalvo.getProduto().getNome(),
                 itemSalvo.getPedido().getId());
-
     }
 
 }

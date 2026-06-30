@@ -55,7 +55,11 @@ public class SecurityConfig {
                                 "/categorias/**",
                                 "/comandas/**",
                                 "/pagamentos/**",
-                                "/secao/**"
+                                "/secao/**",
+                                "/notificacoes/**",
+                                "/mesas/**",
+                                "/pedidos/**"
+
                         ).permitAll()
                         .requestMatchers("/mesas/**").hasAnyRole("ADMIN", "WAITER", "")
                         .requestMatchers("/pedidos/**").authenticated()
