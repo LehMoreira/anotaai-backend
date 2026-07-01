@@ -29,7 +29,7 @@ public class ProdutoController {
     public ProdutoController(ProdutoService produtoService) {
 		this.produtoService = produtoService;
 	}
-
+    @PreAuthorize("hasAnyRole('CLIENT','ADMIN','WAITER')")
 	@GetMapping
     public List<ProdutoResponse> listarProdutos() {
         return produtoService.listarProdutos();
@@ -45,7 +45,7 @@ public class ProdutoController {
     public void deletarProduto(@PathVariable Long id){
     	produtoService.deletarProduto(id);
     }
-
+	@PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProdutoResponse> criarProduto(@Valid @RequestBody CriarProdutoRequest criarProdutoRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criarProduto(criarProdutoRequest));

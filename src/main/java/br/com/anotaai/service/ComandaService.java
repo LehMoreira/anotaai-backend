@@ -74,6 +74,27 @@ public class ComandaService {
                         comanda.getDataFechamento()))
                 .toList();
     }
+    
+    public ComandaResponse buscarComandaAbertaPorMesa(Integer numeroMesa) {
+
+        Comanda comanda = comandaRepository
+                .findByMesaNumeroMesaAndStatus(
+                        numeroMesa,
+                        StatusComanda.ABERTA);
+
+        if (comanda == null) {
+            return null;
+        }
+
+        return new ComandaResponse(
+                comanda.getId(),
+                comanda.getDataAbertura(),
+                comanda.getValorTotal(),
+                comanda.getStatus(),
+                comanda.getMesa().getNumeroMesa(),
+                comanda.getDataFechamento()
+        );
+    }
 
     public Comanda buscarComandaPorId(Long id) {
         return comandaRepository.findById(id)
