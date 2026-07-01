@@ -1,8 +1,9 @@
 package br.com.anotaai.service;
 
 
+import br.com.anotaai.dto.request.ItemPedidoCriacaoRequest;
 import br.com.anotaai.dto.request.ItemPedidoRequest;
-import br.com.anotaai.dto.request.PedidoRequest;
+import br.com.anotaai.dto.request.CriarPedidoRequest;
 import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.dto.response.ItemPedidoResponse;
 import br.com.anotaai.dto.response.PedidoResponse;
@@ -19,7 +20,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PedidoService {
@@ -109,20 +109,20 @@ public class PedidoService {
     }
 
     
-    public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
+    public PedidoResponse criarPedido(CriarPedidoRequest criarPedidoRequest) {
 
-    	Comanda comanda = comandaRepository.findById(pedidoRequest.comandaId())
+    	Comanda comanda = comandaRepository.findById(criarPedidoRequest.comandaId())
     	        .orElseThrow(() -> new RuntimeException("Comanda não encontrada"));
     	if (comanda.getStatus() != StatusComanda.ABERTA) {
             throw new RuntimeException("A comanda está fechada!");
         }
-        Usuario usuario = usuarioRepository.findById(pedidoRequest.usuarioId())
+        Usuario usuario = usuarioRepository.findById(criarPedidoRequest.usuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Pedido pedido = new Pedido();
 
         pedido.setDataHora(LocalDateTime.now());
-        pedido.setObservacao(pedidoRequest.observacao());
+        pedido.setObservacao(criarPedidoRequest.observacao());
         pedido.setComanda(comanda);
         pedido.setMesa(comanda.getMesa());
         pedido.setUsuario(usuario);
@@ -130,16 +130,16 @@ public class PedidoService {
 
         List<ItemPedido> itens = new ArrayList<>();
 
-        for (ItemPedidoRequest itemRequest : pedidoRequest.itens()) {
+        for (ItemPedidoCriacaoRequest itemPedidoCriacaoRequest : criarPedidoRequest.itens()) {
 
-            Produto produto = produtoRepository.findById(itemRequest.idProduto())
+            Produto produto = produtoRepository.findById(itemPedidoCriacaoRequest.idProduto())
                     .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
             ItemPedido item = new ItemPedido();
 
             item.setPedido(pedido);
             item.setProduto(produto);
-            item.setQuantidade(itemRequest.quantidade());
+            item.setQuantidade(itemPedidoCriacaoRequest.quantidade());
             item.setPrecoUnitario(produto.getPreco());
             item.setStatusEntrega(StatusItemPedido.AGUARDANDO);
 

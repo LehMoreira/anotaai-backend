@@ -46,7 +46,7 @@ public class ItemPedidoService {
         Produto produto = produtoRepository.findById(itemPedidoRequest.idProduto())
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
-        Pedido pedido = pedidoRepository.findById(itemPedidoRequest.idProduto())
+        Pedido pedido = pedidoRepository.findById(itemPedidoRequest.idPedido())
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 
         ItemPedido item = new ItemPedido();
@@ -66,6 +66,10 @@ public class ItemPedidoService {
                 itemSalvo.getStatusEntrega(),
                 itemSalvo.getProduto().getNome(),
                 itemSalvo.getPedido().getId());
+    }
+
+    public void deleterItemPedido(Long id){
+        itemPedidoRepository.deleteById(id);
     }
 
 }

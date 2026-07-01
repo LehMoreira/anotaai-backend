@@ -1,7 +1,7 @@
 package br.com.anotaai.controller;
 
 
-import br.com.anotaai.dto.request.PedidoRequest;
+import br.com.anotaai.dto.request.CriarPedidoRequest;
 import br.com.anotaai.dto.request.StatusPedidoRequest;
 import br.com.anotaai.dto.response.PedidoResponse;
 import br.com.anotaai.entity.Pedido;
@@ -56,7 +56,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoRequest request) {
+    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody CriarPedidoRequest request) {
 
         return ResponseEntity.ok(pedidoService.criarPedido(request));
     }

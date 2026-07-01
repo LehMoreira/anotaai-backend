@@ -33,6 +33,11 @@ public class ItemPedidoController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(itemResponse);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletarItemPedido(@PathVariable Long id){
+        itemPedidoService.deleterItemPedido(id);
+    }
 	
 	
 

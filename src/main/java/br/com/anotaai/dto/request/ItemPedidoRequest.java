@@ -6,7 +6,8 @@ import br.com.anotaai.enums.StatusItemPedido;
 
 public record ItemPedidoRequest(
 		int quantidade, 
-		Long idProduto)
+		Long idProduto,
+        Long idPedido)
 		 {
 
 }
