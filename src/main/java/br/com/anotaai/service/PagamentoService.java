@@ -91,6 +91,8 @@ public class PagamentoService {
             throw new RuntimeException("Comanda sem mesa vinculada");
         }
 
+        comandaService.fecharComanda(comanda.getId());
+
         mesa.setStatusMesa(StatusMesa.LIVRE);
 
         pagamentoRepository.save(pagamento);
