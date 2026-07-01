@@ -118,7 +118,7 @@ public class PedidoService {
         }
         Usuario usuario = usuarioRepository.findById(criarPedidoRequest.usuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
+       
         Pedido pedido = new Pedido();
 
         pedido.setDataHora(LocalDateTime.now());

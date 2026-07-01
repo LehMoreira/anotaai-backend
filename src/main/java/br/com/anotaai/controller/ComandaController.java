@@ -33,6 +33,20 @@ public class ComandaController {
     public ResponseEntity<List<ComandaResponse>> listarComandas() {
         return ResponseEntity.ok(comandaService.listarcomandas());
     }
+    
+    @GetMapping("/mesa/{numeroMesa}")
+    public ResponseEntity<ComandaResponse> buscarComandaPorMesa(
+            @PathVariable Integer numeroMesa) {
+
+        ComandaResponse comanda =
+                comandaService.buscarComandaAbertaPorMesa(numeroMesa);
+
+        if (comanda == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(comanda);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ComandaResponse> buscarPorId(@PathVariable Long id) {

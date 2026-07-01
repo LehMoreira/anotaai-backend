@@ -1,0 +1,62 @@
+
+
+//SEÇÂO
+{
+  "nome": "lounge"
+}
+
+{
+  "nome": "vip"
+}
+
+{
+  "nome": "externa"
+}
+
+//MESAS
+
+{
+  "numeroMesa": 1,
+  "capacidade": 5,
+  "secao_id": 1
+}
+{
+  "numeroMesa": 2,
+  "capacidade": 4,
+  "secao_id": 2
+}
+{
+  "numeroMesa": 3,
+  "capacidade": 4,
+  "secao_id": 3
+}
+
+//CATEGORIA
+{
+  "nome": "lanches"
+}
+{
+  "nome": "bebidas"
+}
+
+{
+  "nome": "almoço"
+}
+
+//PRODUTO
+
+{
+  "nome": "Hamburguer",
+  "descricao": "Pão brioche, carne dupla, salada e queijo",
+  "preco": 29.9,
+  "imagemURL": "https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG96748.png",
+  "categoria_id": 1
+}
+
+{
+  "nome": "Suco",
+  "descricao": "Suco da polpa, consultar sabores",
+  "preco": 7.9,
+  "imagemURL": "https://pngimg.com/uploads/juice/small/juice_PNG7191.png",
+  "categoria_id": 2
+}

@@ -59,12 +59,12 @@ public class SecurityConfig {
                                 "/notificacoes/**",
                                 "/mesas/**",
                                 "/pedidos/**"
-
-                        ).permitAll()
+                       ).permitAll()
                         .requestMatchers("/mesas/**").hasAnyRole("ADMIN", "WAITER", "")
-                        .requestMatchers("/pedidos/**").authenticated()
+                        .requestMatchers("/produtos/**").hasAnyRole("ADMIN", "WAITER", "CLIENT")
+                        //.requestMatchers("/pedidos/**").authenticated()
                         .requestMatchers("/notificacoes/**").authenticated()
-                        .requestMatchers("/produtos/**").authenticated()
+                        
 
                         .anyRequest().authenticated()
                 )
