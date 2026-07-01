@@ -14,7 +14,7 @@ public class StatusPedidoRequest {
     private StatusPedido statusPedido;
 
     public StatusPedidoRequest(StatusPedido statusPedido) {
-
+        this.statusPedido = statusPedido;
     }
 
 

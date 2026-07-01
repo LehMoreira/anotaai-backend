@@ -32,13 +32,11 @@ public class PedidoController {
         return pedidoService.listarPedidos();
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
     @GetMapping("/{id}")
     public Pedido listarPedidosPorId(@PathVariable Long id) {
         return pedidoService.listarPedidoPorId(id);
     }
 
-   // @PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
     @GetMapping("/status")
     public List<PedidoResponse> listarPedidoPorStatus(@RequestParam StatusPedido statusPedido) {
         return pedidoService.listarPorStatus(statusPedido);
@@ -49,7 +47,6 @@ public class PedidoController {
         pedidoService.deletarPedido(id);
     }
 
-  //  @PreAuthorize("hasAnyRole('ADMIN', 'WAITER')")
     @PatchMapping("/{id}/status")
     public void atualizarStatusPedido(@PathVariable Long id, @Valid @RequestBody StatusPedidoRequest statusPedidoRequest) {
         pedidoService.atualizarStatusPedido(id, statusPedidoRequest);
